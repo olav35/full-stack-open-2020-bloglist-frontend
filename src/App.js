@@ -49,7 +49,7 @@ const App = () => {
                 onPasswordChange={handlePasswordChange}
                 onUsernameChange={handleUsernameChange}/>
         ) : (
-          <Blogs blogs={blogs}/>
+          <Blogs blogs={blogs} name={user.name}/>
         )
       }
     </div>
