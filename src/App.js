@@ -40,8 +40,21 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
+
+    const storedUser = window.localStorage.getItem('user')
+    if(storedUser !== undefined) {
+      setUser(JSON.parse(storedUser))
+    }
   }, [])
+
+  useEffect(() => {
+    if(user === null){
+      window.localStorage.removeItem('user')
+    } else {
+      window.localStorage.setItem('user', JSON.stringify(user))
+    }
+  }, [user])
 
   return (
     <div>
