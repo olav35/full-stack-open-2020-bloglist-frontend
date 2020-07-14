@@ -11,6 +11,7 @@ const Login = (props) => {
 
   return (
     <form onSubmit={onLogin}>
+      <h2>log in to application</h2>
       <b>username:</b><input onChange={onUsernameChange} value={username}/>
       <br/>
       <b>password</b><input type="password" onChange={onPasswordChange} value={password}/>
