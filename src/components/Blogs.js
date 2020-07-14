@@ -11,8 +11,10 @@ const Blogs = (props) => {
     onLogout,
     newBlog,
     onNewBlogChange,
-    onSubmitBlog
+    onSubmitBlog,
+    toggleableRef
   } = props
+
 
   return (
     <div>
@@ -23,7 +25,7 @@ const Blogs = (props) => {
       {
         blogs.map(blog =><Blog key={blog.id} blog={blog} />)
       }
-      <Toggleable buttonLabel="create post">
+      <Toggleable buttonLabel="create post" ref={toggleableRef}>
         <CreateBlog blog={newBlog}
                     onChange={onNewBlogChange}
                     onSubmit={onSubmitBlog}/>

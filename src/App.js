@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import blogService from './services/blogs'
 import Axios from 'axios'
 import Login from './components/Login'
@@ -19,6 +19,8 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [newBlog, setNewBlog] = useState({...emptyBlog})
   const [notification, setNotification] = useState(null)
+
+  const toggleableRef = useRef()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -61,6 +63,7 @@ const App = () => {
       setBlogs(blogs.concat(blog))
       setNewBlog({...emptyBlog})
       setNotification({type: 'success', message: 'Posted succesfully'})
+      toggleableRef.current.toggleVisibility()
     } catch(error) {
       setNotification({type: 'failure', message: error.message})
     }
@@ -101,7 +104,8 @@ const App = () => {
                  onLogout={handleLogout}
                  newBlog={newBlog}
                  onNewBlogChange={handleNewBlogChange}
-                 onSubmitBlog={handleSubmitBlog}/>
+                 onSubmitBlog={handleSubmitBlog}
+                 toggleableRef={toggleableRef}/>
         )
       }
     </div>
