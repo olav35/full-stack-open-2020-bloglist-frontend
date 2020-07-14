@@ -1,36 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Blog from './components/Blog'
 import blogService from './services/blogs'
 import Axios from 'axios'
-
-const Login = (props) => {
-  const {
-    onLogin,
-    username,
-    password,
-    onUsernameChange,
-    onPasswordChange
-  } = props
-
-  return (
-    <form onSubmit={onLogin}>
-      <b>username:</b><input onChange={onUsernameChange} value={username}/>
-      <br/>
-      <b>password</b><input type="password" onChange={onPasswordChange} value={password}/>
-      <br/>
-      <input type="submit" value="Login"/>
-    </form>
-  )
-}
-
-const Blogs = ({blogs}) => (
-  <div>
-    <h2>blogs</h2>
-    {
-      blogs.map(blog =><Blog key={blog.id} blog={blog} />)
-    }
-  </div>
-)
+import Login from './components/Login'
+import Blogs from './components/Blogs'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
