@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const Blog = ({ blog, onClickLike}) => {
+const Blog = ({ blog, onClickLike, user, onClickRemoveBlog}) => {
   const [fullView, setFullView] = useState(false)
 
   const toggleFullView = () => setFullView(!fullView)
@@ -13,9 +13,10 @@ const Blog = ({ blog, onClickLike}) => {
           <div>
             {blog.url}
             <br/>
-            likes {blog.likes} <button data-id={blog.id} onClick={onClickLike}>like</button> {/* dummy button*/}
+            likes {blog.likes} <button data-id={blog.id} onClick={onClickLike}>like</button>
             <br/>
             {blog.user.name}
+            {blog.user.username === user.username && <button data-id={blog.id} onClick={onClickRemoveBlog}>remove</button>}
           </div>
         )
       }

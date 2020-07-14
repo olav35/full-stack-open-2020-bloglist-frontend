@@ -111,6 +111,13 @@ const App = () => {
     }
   }, [user])
 
+  const handleClickRemoveBlog = async (event) => {
+    const id = event.target.getAttribute('data-id')
+
+    await blogService.remove(id,user.token)
+    setBlogs(blogs.filter(blog => blog.id !== id))
+  }
+
   return (
     <div>
       {notification && <Notification notification={notification}/>}
@@ -130,6 +137,8 @@ const App = () => {
                  onSubmitBlog={handleSubmitBlog}
                  toggleableRef={toggleableRef}
                  onClickLike={handleClickLike}
+                 onClickRemoveBlog={handleClickRemoveBlog}
+                 user={user}
                  />
         )
       }

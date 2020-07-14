@@ -13,7 +13,9 @@ const Blogs = (props) => {
     onNewBlogChange,
     onSubmitBlog,
     toggleableRef,
-    onClickLike
+    onClickLike,
+    user,
+    onClickRemoveBlog
   } = props
 
   const [sortedBlogs, setSortedBlogs] = useState([])
@@ -42,7 +44,11 @@ const Blogs = (props) => {
       <br/>
       <br/>
       {
-        sortedBlogs.map(blog =><Blog key={blog.id} blog={blog} onClickLike={onClickLike}/>)
+        sortedBlogs.map(blog =><Blog key={blog.id}
+                                     blog={blog}
+                                     onClickLike={onClickLike}
+                                     onClickRemoveBlog={onClickRemoveBlog}
+                                     user={user}/>)
       }
       <Toggleable buttonLabel="create post" ref={toggleableRef}>
         <CreateBlog blog={newBlog}
