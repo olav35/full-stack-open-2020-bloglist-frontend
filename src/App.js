@@ -4,6 +4,7 @@ import Axios from 'axios'
 import Login from './components/Login'
 import Blogs from './components/Blogs'
 import Notification from './components/Notification'
+import './App.css'
 
 const emptyBlog = {
   title: '',
