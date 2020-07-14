@@ -4,11 +4,18 @@ import Axios from 'axios'
 import Login from './components/Login'
 import Blogs from './components/Blogs'
 
+const emptyBlog = {
+  title: '',
+  url: '',
+  author: ''
+}
+
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [newBlog, setNewBlog] = useState({...emptyBlog})
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -35,6 +42,20 @@ const App = () => {
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value)
+  }
+
+  const handleNewBlogChange = (event) => {
+    const key = event.target.getAttribute('data-key')
+    let blog = {...newBlog}
+    blog[key] = event.target.value
+    setNewBlog(blog)
+  }
+
+  const handleSubmitBlog = (event) => {
+    event.preventDefault()
+    const dummyId = Math.random().toString(10) 
+    setBlogs(blogs.concat({...newBlog, id: dummyId}))
+    setNewBlog({...emptyBlog})
   }
 
   useEffect(() => {
@@ -66,7 +87,12 @@ const App = () => {
                 onPasswordChange={handlePasswordChange}
                 onUsernameChange={handleUsernameChange}/>
         ) : (
-          <Blogs blogs={blogs} name={user.name} onLogout={handleLogout}/>
+          <Blogs blogs={blogs}
+                 name={user.name}
+                 onLogout={handleLogout}
+                 newBlog={newBlog}
+                 onNewBlogChange={handleNewBlogChange}
+                 onSubmitBlog={handleSubmitBlog}/>
         )
       }
     </div>
