@@ -2,6 +2,7 @@ import React from 'react'
 import Blog from './Blog'
 import Logout from './Logout'
 import CreateBlog from './CreateBlog'
+import Toggleable from './Toggleable'
 
 const Blogs = (props) => {
   const {
@@ -22,9 +23,11 @@ const Blogs = (props) => {
       {
         blogs.map(blog =><Blog key={blog.id} blog={blog} />)
       }
-      <CreateBlog blog={newBlog}
-                  onChange={onNewBlogChange}
-                  onSubmit={onSubmitBlog}/>
+      <Toggleable buttonLabel="create post">
+        <CreateBlog blog={newBlog}
+                    onChange={onNewBlogChange}
+                    onSubmit={onSubmitBlog}/>
+      </Toggleable>  
     </div>
   )
 }
