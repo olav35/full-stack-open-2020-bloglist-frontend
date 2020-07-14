@@ -17,7 +17,7 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [newBlog, setNewBlog] = useState({...emptyBlog})
+  const [newBlog, setNewBlog] = useState({ ...emptyBlog })
   const [notification, setNotification] = useState(null)
 
   const toggleableRef = useRef()
@@ -34,10 +34,12 @@ const App = () => {
       setUser(response.data)
       setUsername('')
       setPassword('')
-    } catch(error) {}
+    } catch(error) {
+
+    }
   }
 
-  const handleLogout = (event) => {
+  const handleLogout = () => {
     setUser(null)
   }
 
@@ -51,7 +53,7 @@ const App = () => {
 
   const handleNewBlogChange = (event) => {
     const key = event.target.getAttribute('data-key')
-    let blog = {...newBlog}
+    let blog = { ...newBlog }
     blog[key] = event.target.value
     setNewBlog(blog)
   }
@@ -61,11 +63,11 @@ const App = () => {
       event.preventDefault()
       const blog = await blogService.create(newBlog, user.token)
       setBlogs(blogs.concat(blog))
-      setNewBlog({...emptyBlog})
-      setNotification({type: 'success', message: 'Posted succesfully'})
+      setNewBlog({ ...emptyBlog })
+      setNotification({ type: 'success', message: 'Posted succesfully' })
       toggleableRef.current.toggleVisibility()
     } catch(error) {
-      setNotification({type: 'failure', message: error.message})
+      setNotification({ type: 'failure', message: error.message })
     }
   }
 
@@ -78,7 +80,7 @@ const App = () => {
     await blogs.forEach(async blog => {
       const id = event.target.getAttribute('data-id')
       if(blog.id === id){
-        localLikedBlog = {...blog, likes: String(Number(blog.likes) + 1)}
+        localLikedBlog = { ...blog, likes: String(Number(blog.likes) + 1) }
 
         // not all fields are included is prob the error
         // enten la være å ta med user eller cast server side
@@ -121,25 +123,25 @@ const App = () => {
   return (
     <div>
       {notification && <Notification notification={notification}/>}
-      { 
+      {
         user === null ? (
           <Login onLogin={handleLogin}
-                username={username}
-                password={password}
-                onPasswordChange={handlePasswordChange}
-                onUsernameChange={handleUsernameChange}/>
+            username={username}
+            password={password}
+            onPasswordChange={handlePasswordChange}
+            onUsernameChange={handleUsernameChange}/>
         ) : (
           <Blogs blogs={blogs}
-                 name={user.name}
-                 onLogout={handleLogout}
-                 newBlog={newBlog}
-                 onNewBlogChange={handleNewBlogChange}
-                 onSubmitBlog={handleSubmitBlog}
-                 toggleableRef={toggleableRef}
-                 onClickLike={handleClickLike}
-                 onClickRemoveBlog={handleClickRemoveBlog}
-                 user={user}
-                 />
+            name={user.name}
+            onLogout={handleLogout}
+            newBlog={newBlog}
+            onNewBlogChange={handleNewBlogChange}
+            onSubmitBlog={handleSubmitBlog}
+            toggleableRef={toggleableRef}
+            onClickLike={handleClickLike}
+            onClickRemoveBlog={handleClickRemoveBlog}
+            user={user}
+          />
         )
       }
     </div>

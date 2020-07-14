@@ -25,11 +25,11 @@ const Blogs = (props) => {
     setSortedBlogs(blogs.sort((left, right) => {
       const leftLikes = Number(left.likes)
       const rightLikes = Number(right.likes)
-      
+
       if(leftLikes === rightLikes){
         return 0
       } else if(leftLikes < rightLikes) {
-        return -1 
+        return -1
       } else {
         return 1
       }
@@ -44,17 +44,17 @@ const Blogs = (props) => {
       <br/>
       <br/>
       {
-        sortedBlogs.map(blog =><Blog key={blog.id}
-                                     blog={blog}
-                                     onClickLike={onClickLike}
-                                     onClickRemoveBlog={onClickRemoveBlog}
-                                     user={user}/>)
+        sortedBlogs.map(blog => <Blog key={blog.id}
+          blog={blog}
+          onClickLike={onClickLike}
+          onClickRemoveBlog={onClickRemoveBlog}
+          user={user}/>)
       }
       <Toggleable buttonLabel="create post" ref={toggleableRef}>
         <CreateBlog blog={newBlog}
-                    onChange={onNewBlogChange}
-                    onSubmit={onSubmitBlog}/>
-      </Toggleable>  
+          onChange={onNewBlogChange}
+          onSubmit={onSubmitBlog}/>
+      </Toggleable>
     </div>
   )
 }

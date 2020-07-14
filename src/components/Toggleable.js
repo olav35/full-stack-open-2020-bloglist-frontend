@@ -1,7 +1,7 @@
-import React, {useState, useImperativeHandle} from 'react'
+import React, { useState, useImperativeHandle } from 'react'
 
 // returns the css object to show or hide an element
-const show = (visible) => ({ display: visible ? '' : 'none'})
+const show = (visible) => ({ display: visible ? '' : 'none' })
 
 const Toggleable = React.forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)
@@ -29,5 +29,7 @@ const Toggleable = React.forwardRef((props, ref) => {
   )
 }
 )
+
+Toggleable.displayName = 'Toggleable'
 
 export default Toggleable

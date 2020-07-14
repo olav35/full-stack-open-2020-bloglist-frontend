@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import propTypes from 'prop-types'
 
-const Blog = ({ blog, onClickLike, user, onClickRemoveBlog}) => {
+const Blog = ({ blog, onClickLike, user, onClickRemoveBlog }) => {
   const [fullView, setFullView] = useState(false)
 
   const toggleFullView = () => setFullView(!fullView)
@@ -10,7 +10,7 @@ const Blog = ({ blog, onClickLike, user, onClickRemoveBlog}) => {
     <div>
       {fullView && <br/>}
       {blog.title} {blog.author} <button onClick={toggleFullView}>{fullView ? 'hide' : 'view'}</button>
-      { 
+      {
         fullView && (
           <div>
             {blog.url}

@@ -8,7 +8,7 @@ const getAll = () => {
 
 const create = async (newBlog, token) => {
   const config = {
-    headers: { Authorization: `bearer ${token}`}
+    headers: { Authorization: `bearer ${token}` }
   }
   const response = await axios.post('/api/blogs', newBlog, config)
   return response.data
@@ -24,7 +24,7 @@ const update = async (updatedBlog, token) => {
   }
 
   const config = {
-    headers: { Authorization: `bearer ${token}`}
+    headers: { Authorization: `bearer ${token}` }
   }
   const response = await axios.put(`/api/blogs/${updatedBlog.id}`, remoteLikedBlog, config)
   return response.data
@@ -32,7 +32,7 @@ const update = async (updatedBlog, token) => {
 
 const remove = async (id, token) => {
   const config = {
-    headers: { Authorization: `bearer ${token}`}
+    headers: { Authorization: `bearer ${token}` }
   }
   await axios.delete(`/api/blogs/${id}`, config)
 }

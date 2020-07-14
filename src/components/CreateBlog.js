@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const CreateBlog = ({blog, onChange, onSubmit}) => (
+const CreateBlog = ({ blog, onChange, onSubmit }) => (
   <form onSubmit={onSubmit}>
     <h2>create new</h2>
     <b>title:</b><input data-key="title" onChange={onChange} value={blog.title}/>
