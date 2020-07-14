@@ -51,10 +51,10 @@ const App = () => {
     setNewBlog(blog)
   }
 
-  const handleSubmitBlog = (event) => {
+  const handleSubmitBlog = async (event) => {
     event.preventDefault()
-    const dummyId = Math.random().toString(10) 
-    setBlogs(blogs.concat({...newBlog, id: dummyId}))
+    const blog = await blogService.create(newBlog, user.token)
+    setBlogs(blogs.concat(blog))
     setNewBlog({...emptyBlog})
   }
 
