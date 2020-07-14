@@ -43,7 +43,11 @@ module.exports = {
       "arrow-spacing": [
           "error", { "before": true, "after": true }
       ],
+      "no-empty": [
+        "error", { "allowEmptyCatch": true}
+      ],
+
       "no-console": 0,
-      "react/prop-types": 0
+      "react/prop-types": 0,
   }
 }
