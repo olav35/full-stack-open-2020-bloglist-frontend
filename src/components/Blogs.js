@@ -12,7 +12,8 @@ const Blogs = (props) => {
     newBlog,
     onNewBlogChange,
     onSubmitBlog,
-    toggleableRef
+    toggleableRef,
+    onClickLike
   } = props
 
 
@@ -23,7 +24,7 @@ const Blogs = (props) => {
       <br/>
       <br/>
       {
-        blogs.map(blog =><Blog key={blog.id} blog={blog} />)
+        blogs.map(blog =><Blog key={blog.id} blog={blog} onClickLike={onClickLike}/>)
       }
       <Toggleable buttonLabel="create post" ref={toggleableRef}>
         <CreateBlog blog={newBlog}

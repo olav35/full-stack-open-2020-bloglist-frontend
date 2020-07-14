@@ -15,10 +15,18 @@ const create = async (newBlog, token) => {
 }
 
 const update = async (updatedBlog, token) => {
+  const remoteLikedBlog = {
+    user: updatedBlog.user.id,
+    likes: updatedBlog.likes + 1,
+    author: updatedBlog.author,
+    title: updatedBlog.title,
+    url: updatedBlog.url
+  }
+
   const config = {
     headers: { Authorization: `bearer ${token}`}
   }
-  const response = await axios.post('/api/blogs',updatedBlog, config)
+  const response = await axios.put(`/api/blogs/${updatedBlog.id}`, remoteLikedBlog, config)
   return response.data
 }
 

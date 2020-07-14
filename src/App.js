@@ -69,6 +69,29 @@ const App = () => {
     }
   }
 
+  const handleClickLike = async (event) => {
+    console.log(blogs)
+    console.log([...blogs])
+
+    let localLikedBlog
+    const updatedBlogs = []
+    await blogs.forEach(async blog => {
+      const id = event.target.getAttribute('data-id')
+      if(blog.id === id){
+        localLikedBlog = {...blog, likes: String(Number(blog.likes) + 1)}
+
+        // not all fields are included is prob the error
+        // enten la være å ta med user eller cast server side
+        await blogService.update(localLikedBlog, user.token)
+        updatedBlogs.push(blog)
+      } else {
+        updatedBlogs.push(blog)
+      }
+    })
+    console.log(updatedBlogs)
+    setBlogs(updatedBlogs)
+  }
+
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
@@ -105,7 +128,9 @@ const App = () => {
                  newBlog={newBlog}
                  onNewBlogChange={handleNewBlogChange}
                  onSubmitBlog={handleSubmitBlog}
-                 toggleableRef={toggleableRef}/>
+                 toggleableRef={toggleableRef}
+                 onClickLike={handleClickLike}
+                 />
         )
       }
     </div>
