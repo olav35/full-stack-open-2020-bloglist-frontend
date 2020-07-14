@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Blog from './Blog'
 import Logout from './Logout'
 import CreateBlog from './CreateBlog'
@@ -16,6 +16,24 @@ const Blogs = (props) => {
     onClickLike
   } = props
 
+  const [sortedBlogs, setSortedBlogs] = useState([])
+
+
+  useEffect(() => {
+    setSortedBlogs(blogs.sort((left, right) => {
+      const leftLikes = Number(left.likes)
+      const rightLikes = Number(right.likes)
+      
+      if(leftLikes === rightLikes){
+        return 0
+      } else if(leftLikes < rightLikes) {
+        return -1 
+      } else {
+        return 1
+      }
+    }))
+  }, [blogs])
+
 
   return (
     <div>
@@ -24,7 +42,7 @@ const Blogs = (props) => {
       <br/>
       <br/>
       {
-        blogs.map(blog =><Blog key={blog.id} blog={blog} onClickLike={onClickLike}/>)
+        sortedBlogs.map(blog =><Blog key={blog.id} blog={blog} onClickLike={onClickLike}/>)
       }
       <Toggleable buttonLabel="create post" ref={toggleableRef}>
         <CreateBlog blog={newBlog}
