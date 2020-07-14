@@ -3,6 +3,7 @@ import blogService from './services/blogs'
 import Axios from 'axios'
 import Login from './components/Login'
 import Blogs from './components/Blogs'
+import Notification from './components/Notification'
 
 const emptyBlog = {
   title: '',
@@ -16,6 +17,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [newBlog, setNewBlog] = useState({...emptyBlog})
+  const [notification, setNotification] = useState(null)
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -52,10 +54,15 @@ const App = () => {
   }
 
   const handleSubmitBlog = async (event) => {
-    event.preventDefault()
-    const blog = await blogService.create(newBlog, user.token)
-    setBlogs(blogs.concat(blog))
-    setNewBlog({...emptyBlog})
+    try {
+      event.preventDefault()
+      const blog = await blogService.create(newBlog, user.token)
+      setBlogs(blogs.concat(blog))
+      setNewBlog({...emptyBlog})
+      setNotification({type: 'success', message: 'Posted succesfully'})
+    } catch(error) {
+      setNotification({type: 'failure', message: error.message})
+    }
   }
 
   useEffect(() => {
@@ -79,6 +86,7 @@ const App = () => {
 
   return (
     <div>
+      {notification && <Notification notification={notification}/>}
       { 
         user === null ? (
           <Login onLogin={handleLogin}
