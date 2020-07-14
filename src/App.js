@@ -25,6 +25,10 @@ const App = () => {
     } catch(error) {}
   }
 
+  const handleLogout = (event) => {
+    setUser(null)
+  }
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value)
   }
@@ -49,7 +53,7 @@ const App = () => {
                 onPasswordChange={handlePasswordChange}
                 onUsernameChange={handleUsernameChange}/>
         ) : (
-          <Blogs blogs={blogs} name={user.name}/>
+          <Blogs blogs={blogs} name={user.name} onLogout={handleLogout}/>
         )
       }
     </div>

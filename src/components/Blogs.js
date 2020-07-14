@@ -1,10 +1,11 @@
 import React from 'react'
 import Blog from './Blog'
+import Logout from './Logout'
 
-const Blogs = ({blogs, name}) => (
+const Blogs = ({blogs, name, onLogout}) => (
   <div>
     <h2>blogs</h2>
-    {name} logged in
+    {name} logged in <Logout onLogout={onLogout}/>
     <br/>
     <br/>
     {
