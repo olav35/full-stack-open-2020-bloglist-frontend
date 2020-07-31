@@ -44,3 +44,31 @@ test('renders the url and likes when view is clicked', () => {
   expect(component.container).toHaveTextContent(blog.likes)
   expect(component.container).toHaveTextContent(blog.url)
 })
+
+test('calls the designated event handler two times if the like button is clicked', () => {
+  const user = {
+    name: 'Olav',
+    username: 'olavfosse'
+  }
+
+  const blog = {
+    title: 'Blog Title',
+    author: 'Blog Author',
+    likes: 100,
+    url: 'https://sickurl.com',
+    user
+  }
+
+  const mockHandler = jest.fn()
+
+  const component = render(
+    <Blog blog={blog} user={user} onClickLike={mockHandler} onClickRemoveBlog={() => undefined}s/>
+  )
+  fireEvent.click(component.getByText('view'))
+
+  const button = component.getByText('like')
+  fireEvent.click(button)
+  fireEvent.click(button)
+
+  expect(mockHandler.mock.calls).toHaveLength(2)
+})
