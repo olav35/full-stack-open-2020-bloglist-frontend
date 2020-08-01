@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 const CreateBlog = ({ blog, onChange, onSubmit }) => (
   <form onSubmit={onSubmit}>
     <h2>create new</h2>
@@ -14,4 +12,5 @@ const CreateBlog = ({ blog, onChange, onSubmit }) => (
     <input type="submit" value="create"/>
   </form>
 )
+
 export default CreateBlog
