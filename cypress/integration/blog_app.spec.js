@@ -33,4 +33,25 @@ describe('Blog app', function() {
       cy.contains('user logged in').should('not.exist')
     })
   })
+
+  describe.only('When logged in', function () {
+    beforeEach(function() {
+      cy.get('#username-input').type('username')
+      cy.get('#password-input').type('password')
+      cy.get('#login-form').submit()
+    })
+
+    it('A blog can be created', function() {
+      cy.contains('create post').click()
+      cy.get('#title-input').type('Epic title')
+      cy.get('#author-input').type('Olav Fosse')
+      cy.get('#url-input').type('https://fossegr.im')
+      cy.get('#create-blog-input').click()
+
+      cy.contains('Epic title')
+      cy.contains('Olav Fosse')
+      cy.contains('view').click()
+      cy.contains('https://fossegr.im')
+    })
+  })
 })
