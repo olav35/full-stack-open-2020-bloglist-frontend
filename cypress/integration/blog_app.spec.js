@@ -89,6 +89,14 @@ describe('Blog app', function() {
         cy.contains('view').click()
         cy.contains('remove').click()
       })
+
+      it('blogs are ordered by likes', function () {
+        cy.contains('view').last().click()
+        cy.contains('like').click()
+        cy.contains('hide').click()
+        cy.contains('view').last().click()
+        cy.contains('0')
+      })
     })
   })
 })

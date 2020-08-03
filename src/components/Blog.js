@@ -7,7 +7,7 @@ const Blog = ({ blog, onClickLike, user, onClickRemoveBlog }) => {
   const toggleFullView = () => setFullView(!fullView)
 
   return (
-    <div>
+    <div className="blog">
       {fullView && <br/>}
       {blog.title} {blog.author} <button onClick={toggleFullView}>{fullView ? 'hide' : 'view'}</button>
       {
