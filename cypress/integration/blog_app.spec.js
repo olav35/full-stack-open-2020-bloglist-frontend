@@ -54,7 +54,7 @@ describe('Blog app', function() {
       cy.contains('https://fossegr.im')
     })
 
-    describe.only('When there are existing blogs', function () {
+    describe('When there are existing blogs', function () {
       beforeEach(function () {
         const blog1 = {
           title: 'Epic title',
@@ -82,9 +82,12 @@ describe('Blog app', function() {
         cy.contains('view').click()
         cy.contains('like').click()
         cy.contains('1')
-        cy.contains('like').click()
-        cy.contains('like').click()
-        cy.contains('3')
+      })
+
+      it('a blog can be deleted', function () {
+        cy.reload()
+        cy.contains('view').click()
+        cy.contains('remove').click()
       })
     })
   })
