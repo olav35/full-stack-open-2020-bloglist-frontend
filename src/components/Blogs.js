@@ -28,7 +28,7 @@ const Blogs = (props) => {
 
       if(leftLikes === rightLikes){
         return 0
-      } else if(leftLikes < rightLikes) {
+      } else if(leftLikes > rightLikes) {
         return -1
       } else {
         return 1

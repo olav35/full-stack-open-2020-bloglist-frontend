@@ -1,7 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
-import CreateBlogs from './CreateBlog'
 import CreateBlog from './CreateBlog'
 
 const expectedBehaviour = 'the form calls the event handler it received as props when a new blog is created'
